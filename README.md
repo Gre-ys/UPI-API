@@ -13,7 +13,7 @@ npm install
 ```bash
 MONGODB_URI = link koneksi database mongodb
 ```
-### Buka terminal lalu masuk ke folder repository
+### Buka terminal lalu masuk ke local repository
 ### Jalankan perintah untuk memulai server
 ```bash
 npm run start
