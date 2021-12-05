@@ -9,13 +9,16 @@ git clone https://github.com/Gre-ys/UPI-API
 ```bash
 npm install
 ```
-- Buat file .env dan di dalamnya buat variabel MONGODB_URI = link koneksi database mongodb
+- Buat file .env dan di dalamnya buat variabel untuk link koneksi database
+```bash
+MONGODB_URI = link koneksi database mongodb
+```
 - Buka terminal lalu masuk ke folder repository
 - Jalankan perintah untuk memulai server
 ```bash
 npm run start
 ```
 - Tunggu sampai di dalam terminal tertera pemberitahuan
-![pemberitahuan](pemberitahuan.PNG)
+![pemberitahuan](img/pemberitahuan.PNG)
 - Untuk cek penggunaan API, akses localhost:4000/end-point di browser atau di aplikasi pengujian API seperti Postman
-![testAPI](testAPI.PNG)
+![testAPI](img/testAPI.PNG)
