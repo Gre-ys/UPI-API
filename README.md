@@ -1,6 +1,18 @@
 # **API Fakultas Prodi dengan Express JS - MongoDB**
 
-## **Tata Cara Menjalankan**
+## **Coba Langsung API**
+Link dibawah merupakan API yang sudah di deploy di netlify(Serverless API) dan siap untuk digunakan
+```bash
+https://upi-api.netlify.app/.netlify/functions/api/end-point
+```
+### End-Point
+- /fakultas-prodi
+- /fakultas
+- /fakultas/{namaFakuktas}/prodi
+- /prodi
+- /prodi/{kodeProdi}
+
+## **Tata Cara Menjalankan Di Server Lokal Masing-masing**
 ### Clone repository ini
 ```bash
 git clone https://github.com/Gre-ys/UPI-API
@@ -21,3 +33,5 @@ npm run start
 ![pemberitahuan](img/pemberitahuan.PNG)
 ### Untuk cek penggunaan API, akses localhost:4000/end-point di browser atau di aplikasi pengujian API seperti Postman
 ![testAPI](img/testAPI.PNG)
+
+
