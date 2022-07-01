@@ -1,7 +1,11 @@
 const express = require('express');
+const serverless = require('serverless-http');
 const mongoose = require('mongoose');
 const app = express();
+const router = express.Router();
 const dotenv = require('dotenv').config();
+
+app.use('/.netlify/functions/api',router);
 
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser:true}, () => console.log('DB Connected...'));
 
@@ -13,7 +17,7 @@ const DataSchema = mongoose.Schema({
 
 const Data = mongoose.model('fakultas_prodi', DataSchema, 'fakultas_prodi');
 
-app.get('/fakultas-prodi', async (req,res) => {
+router.get('/fakultas-prodi', async (req,res) => {
 	const data = await Data.find();
 	const fakultas =data.map((item) => item.fakultas);
 	const listFakultas = Array.from(new Set(fakultas.map(JSON.stringify))).map(JSON.parse);
@@ -33,7 +37,7 @@ const fakultas_prodi = listFakultas.map((fakultas) => ({
 	});
 });
 
-app.get('/fakultas', async (req,res) => {
+router.get('/fakultas', async (req,res) => {
 	 const data = await Data.find();
 	 const fakultas =data.map((item) => ({namaFakultas:item.fakultas}));
 	 const listFakultas = Array.from(new Set(fakultas.map(JSON.stringify))).map(JSON.parse);
@@ -44,7 +48,7 @@ app.get('/fakultas', async (req,res) => {
 	})
 });
 	
-app.get('/fakultas/:namaFakultas/prodi', async (req,res) => {
+router.get('/fakultas/:namaFakultas/prodi', async (req,res) => {
 	const data = await Data.find();
 	const listProdi = data.filter((item)=> item.fakultas === req.params.namaFakultas).map((item) => ({kodeProdi:item.kode, namaProdi:item.prodi}));
 	
@@ -68,7 +72,7 @@ app.get('/fakultas/:namaFakultas/prodi', async (req,res) => {
 	}
 });
 	
-app.get('/prodi', async (req,res) => {
+router.get('/prodi', async (req,res) => {
 	 const data = await Data.find();
 	 const prodi =data.map((item) => ({kode:item.kode, prodi:item.prodi}));
 	 const listProdi = Array.from(new Set(prodi.map(JSON.stringify))).map(JSON.parse);
@@ -79,7 +83,7 @@ app.get('/prodi', async (req,res) => {
 		 })	
 });
 	
-app.get('/prodi/:kodeProdi', async (req,res) => {
+router.get('/prodi/:kodeProdi', async (req,res) => {
 	 const data = await Data.find();
 	 const prodi = data.filter((item)=> item.kode === req.params.kodeProdi).map((item) => ({kode:item.kode, prodi:item.prodi, fakultas:item.fakultas}));
 	 if(prodi.length !== 0){
@@ -99,6 +103,4 @@ app.get('/prodi/:kodeProdi', async (req,res) => {
 	 } 	 	
 });
 
-app.listen(4000, () => {
-	console.log('Server Ready On Port:4000...');
-});
+module.exports.handler = serverless(app);
