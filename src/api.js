@@ -17,7 +17,7 @@ const DataSchema = mongoose.Schema({
 
 const Data = mongoose.model('fakultas_prodi', DataSchema, 'fakultas_prodi');
 
-router.get('/', async (req,res) => {res.send("UPI API")});
+router.get('/', async (req,res) => {res.send("UPI API. Silahkan Cek Github untuk Mencoba End-Point yang Ada: https://github.com/Gre-ys/UPI-API ")});
 
 router.get('/fakultas-prodi', async (req,res) => {
 	const data = await Data.find();
