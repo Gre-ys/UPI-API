@@ -17,6 +17,8 @@ const DataSchema = mongoose.Schema({
 
 const Data = mongoose.model('fakultas_prodi', DataSchema, 'fakultas_prodi');
 
+router.get('/', async (req,res) => {res.send("UPI API")});
+
 router.get('/fakultas-prodi', async (req,res) => {
 	const data = await Data.find();
 	const fakultas =data.map((item) => item.fakultas);
